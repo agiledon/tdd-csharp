@@ -9,7 +9,7 @@
             this.totalMoney = totalMoney;
         }
 
-        public double TotalMoney { get; }
+        public double TotalMoney => this.totalMoney;
 
         public void AddMoney(double deposit)
         {

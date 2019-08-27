@@ -15,14 +15,8 @@
             this.priceCode = priceCode;
         }
 
-        public int PriceCode
-        {
-            get; set;
-        }
+        public int PriceCode => this.priceCode;
 
-        public string Title
-        {
-            get;
-        }
+        public string Title => this.title;
     }
 }

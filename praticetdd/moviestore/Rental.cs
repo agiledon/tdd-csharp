@@ -11,14 +11,8 @@
             this.daysRented = daysRented;
         }
 
-        public int DaysRented
-        {
-            get;
-        }
+        public int DaysRented => this.daysRented;
 
-        public Movie Movie
-        {
-            get;
-        }
+        public Movie Movie => this.movie;
     }
 }

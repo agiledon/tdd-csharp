@@ -17,14 +17,8 @@ namespace Zhangyi.PraticeTDD.TDDBasic.OO.Demeter
             this.myWallet = myWallet;
         }
 
-        public string Name
-        {
-            get { return string.Format("{0} {1}", firstName, lastName); }
-        }
+        public string Name => $"{firstName} {lastName}";
 
-        public Wallet Wallet
-        {
-            get { return myWallet; }
-        }
+        public Wallet Wallet => this.myWallet;
     }
 }

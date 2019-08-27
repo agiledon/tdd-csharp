@@ -19,7 +19,7 @@ namespace Zhangyi.PraticeTDD.MovieStore
             rentals.Add(arg);
         }
 
-        public string Name { get; }
+        public string Name { get => this.name; }
 
         public string Statement()
         {
