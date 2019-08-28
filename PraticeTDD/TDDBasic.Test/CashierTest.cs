@@ -17,5 +17,15 @@ namespace TDDBasic.Test
 
             Assert.Equal(50.0, customer.Wallet.TotalMoney);
         }
+
+        [Fact]
+        public void Should_throw_exception_if_money_is_not_enough()
+        {
+            Cashier cashier = new Cashier();
+            Wallet wallet = new Wallet(100.0);
+            Customer customer = new Customer("Bruce", "Zhang", wallet);
+
+            Assert.Throws<NotEnoughMoneyException>(() => cashier.Charge(customer, 150.0));
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Zhangyi.PraticeTDD.TDDBasic.OO.Demeter
 {
-    internal class NotEnoughMoneyException : Exception
+    public class NotEnoughMoneyException : Exception
     {
         public NotEnoughMoneyException()
         {
