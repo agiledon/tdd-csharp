@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
-    <RootNamespace>Zhangyi.PraticeTDD.TDDBasic</RootNamespace>
-    <AssemblyName>PraticeTDD.TDDBasic</AssemblyName>
-  </PropertyGroup>
-
-</Project>
