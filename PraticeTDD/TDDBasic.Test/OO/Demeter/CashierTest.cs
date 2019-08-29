@@ -1,8 +1,7 @@
-using System;
 using Xunit;
 using Zhangyi.PracticeTDD.TDDBasic.OO.Demeter;
 
-namespace TDDBasic.Test
+namespace Zhangyi.PracticeTDD.TDDBasic.Test.OO.Demeter
 {
     public class CashierTest
     {
