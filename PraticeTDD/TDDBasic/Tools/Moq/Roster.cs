@@ -5,7 +5,7 @@ namespace Zhangyi.PracticeTDD.TDDBasic.Tools.Moq
 {
     public class Roster
     {
-        private ITextFileReader reader;
+        private readonly ITextFileReader reader;
 
         public Roster(ITextFileReader reader)
         {

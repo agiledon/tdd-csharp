@@ -20,7 +20,8 @@ namespace Zhangyi.PracticeTDD.TDDBasic.Test.Tools.Moq
             var mockReader = new Mock<ITextFileReader>();
 
             var fileName = "roster.txt";
-            mockReader.Setup(r => r.Read(fileName)).Returns(mockLines);
+            mockReader.Setup(r => r.Read(It.IsAny<string>())).Returns(mockLines);
+//            mockReader.Setup(r => r.Read(fileName)).Returns(mockLines);
             var roster = new Roster(mockReader.Object);
 
             var employees = roster.FetchRoster(fileName);
