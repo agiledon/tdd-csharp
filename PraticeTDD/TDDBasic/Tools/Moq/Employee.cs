@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Zhangyi.PracticeTDD.TDDBasic.Tools
+﻿namespace Zhangyi.PracticeTDD.TDDBasic.Tools.Moq
 {
     public class Employee
     {

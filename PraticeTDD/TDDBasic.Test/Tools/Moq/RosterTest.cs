@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using Moq;
 using Xunit;
-using Zhangyi.PracticeTDD.TDDBasic.Tools;
 using Zhangyi.PracticeTDD.TDDBasic.Tools.Moq;
 
-namespace Zhangyi.PracticeTDD.TDDBasic.Test
+namespace Zhangyi.PracticeTDD.TDDBasic.Test.Tools.Moq
 {
     public class RosterTest
     {

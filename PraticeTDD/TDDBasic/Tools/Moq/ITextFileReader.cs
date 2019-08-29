@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Zhangyi.PracticeTDD.TDDBasic.Tools
+namespace Zhangyi.PracticeTDD.TDDBasic.Tools.Moq
 {
     public interface ITextFileReader
     {
