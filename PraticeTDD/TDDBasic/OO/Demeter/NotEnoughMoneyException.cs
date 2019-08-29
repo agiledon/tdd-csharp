@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Zhangyi.PraticeTDD.TDDBasic.OO.Demeter
+namespace Zhangyi.PracticeTDD.TDDBasic.OO.Demeter
 {
     public class NotEnoughMoneyException : Exception
     {

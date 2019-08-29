@@ -1,20 +1,23 @@
 using System;
 using Xunit;
-using Zhangyi.PraticeTDD.TDDBasic.OO.Demeter;
+using Zhangyi.PracticeTDD.TDDBasic.OO.Demeter;
 
 namespace TDDBasic.Test
 {
     public class CashierTest
     {
         [Fact]
-        public void Should_substract_money_if_money_is_enough()
+        public void Should_subtract_money_if_money_is_enough()
         {
+            // given
             Cashier cashier = new Cashier();
             Wallet wallet = new Wallet(100.0);
             Customer customer = new Customer("Bruce", "Zhang", wallet);
 
+            // when
             cashier.Charge(customer, 50.0);
 
+            // then
             Assert.Equal(50.0, customer.Wallet.TotalMoney);
         }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Zhangyi.PraticeTDD.MovieStore
+namespace Zhangyi.PracticeTDD.MovieStore
 {
     class Customer
     {

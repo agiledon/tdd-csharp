@@ -1,4 +1,4 @@
-﻿namespace Zhangyi.PraticeTDD.MovieStore
+﻿namespace Zhangyi.PracticeTDD.MovieStore
 {
     class Rental
     {

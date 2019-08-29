@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Zhangyi.PraticeTDD.TDDBasic.OO.Demeter
+namespace Zhangyi.PracticeTDD.TDDBasic.OO.Demeter
 {
     public class Cashier
     {
