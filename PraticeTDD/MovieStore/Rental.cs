@@ -1,6 +1,6 @@
 ﻿namespace Zhangyi.PracticeTDD.MovieStore
 {
-    class Rental
+    public class Rental
     {
         private Movie movie;
         private int daysRented;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Zhangyi.PracticeTDD.MovieStore
 {
-    class Customer
+    public class Customer
     {
         private string name;
         private IList<Rental> rentals = new List<Rental>();

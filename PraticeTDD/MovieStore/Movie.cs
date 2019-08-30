@@ -1,6 +1,6 @@
 ﻿namespace Zhangyi.PracticeTDD.MovieStore
 {
-    class Movie
+    public class Movie
     {
         public const int REGULAR = 0;
         public const int NEW_RELEASE = 1;
