@@ -20,5 +20,18 @@ namespace Zhangyi.PracticeTDD.TDDBasic.OO.Demeter
         public string Name => $"{firstName} {lastName}";
 
         public Wallet Wallet => this.myWallet;
+
+        public void Pay(double payment)
+        {
+            Wallet theWallet = this.Wallet;
+            if (theWallet.TotalMoney > payment)
+            {
+                theWallet.SubtractMoney(payment);
+            }
+            else
+            {
+                throw new NotEnoughMoneyException("Money is not enough");
+            }
+        }
     }
 }
