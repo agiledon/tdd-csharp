@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Zhangyi.PracticeTDD.MovieStore
 {
     public class Customer
     {
-        private string name;
         public IList<Rental> Rentals { get; } = new List<Rental>();
-        private readonly StatementView statementView;
 
         public Customer(string name)
         {
-            this.name = name;
-            statementView = new StatementView(this);
+            Name = name;
         }
 
         public void AddRental(Rental arg)
@@ -22,12 +17,7 @@ namespace Zhangyi.PracticeTDD.MovieStore
             Rentals.Add(arg);
         }
 
-        public string Name { get => this.name; }
-
-        public StatementView StatementView
-        {
-            get { return statementView; }
-        }
+        public string Name { get; }
 
         public int FrequentRenterPoints()
         {
