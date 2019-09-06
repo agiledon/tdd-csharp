@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Zhangyi.PracticeTDD.MovieStore
@@ -23,17 +24,9 @@ namespace Zhangyi.PracticeTDD.MovieStore
 
         public string Statement()
         {
-            double totalAmount = 0;
-            foreach (var rental in rentals)
-            {
-                totalAmount += rental.AmountFor();
-            }
+            var totalAmount = TotalAmount();
 
-            int frequentRenterPoints = 0;
-            foreach (var rental in rentals)
-            {
-                frequentRenterPoints += rental.PointsFor();
-            }
+            var frequentRenterPoints = FrequentRenterPoints();
 
             string result = "Rental Record for " + name + "\n";
             foreach (var rental in rentals)
@@ -47,6 +40,16 @@ namespace Zhangyi.PracticeTDD.MovieStore
             result += "You earned " + frequentRenterPoints +
                     " frequent renter points";
             return result;
+        }
+
+        private int FrequentRenterPoints()
+        {
+            return rentals.Sum(rental => rental.PointsFor());
+        }
+
+        private double TotalAmount()
+        {
+            return rentals.Sum(rental => rental.AmountFor());
         }
     }
 }
