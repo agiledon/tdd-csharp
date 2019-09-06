@@ -27,35 +27,13 @@ namespace Zhangyi.PracticeTDD.MovieStore
             int frequentRenterPoints = 0;
             string result = "Rental Record for " + name + "\n";
 
-            foreach (Rental each in rentals)
+            foreach (Rental rental in rentals)
             {
-                double thisAmount = 0;
-                //determine amounts for each line
-                switch (each.Movie.PriceCode)
-                {
-                    case Movie.REGULAR:
-                        thisAmount += 2;
-                        if (each.DaysRented > 2)
-                            thisAmount += (each.DaysRented - 2) * 1.5;
-                        break;
-                    case Movie.NEW_RELEASE:
-                        thisAmount += each.DaysRented * 3;
-                        break;
-                    case Movie.CHILDREN:
-                        thisAmount += 1.5;
-                        if (each.DaysRented > 3)
-                            thisAmount += (each.DaysRented - 3) * 1.5;
-                        break;
-                }
-                // add frequent renter points
-                frequentRenterPoints++;
-                // add bonus for a two day new release rental
-                if ((each.Movie.PriceCode == Movie.NEW_RELEASE)
-                        &&
-                        each.DaysRented > 1)
-                    frequentRenterPoints++;
+                var thisAmount = AmountFor(rental);
+                frequentRenterPoints = PointsFor(frequentRenterPoints, rental);
+
                 //show figures
-                result += "\t" + each.Movie.Title + "\t" + thisAmount + "\n";
+                result += "\t" + rental.Movie.Title + "\t" + thisAmount + "\n";
                 totalAmount += thisAmount;
             }
 
@@ -64,6 +42,42 @@ namespace Zhangyi.PracticeTDD.MovieStore
             result += "You earned " + frequentRenterPoints +
                     " frequent renter points";
             return result;
+        }
+
+        private static int PointsFor(int frequentRenterPoints, Rental rental)
+        {
+            frequentRenterPoints++;
+
+            if (rental.Movie.PriceCode == Movie.NEW_RELEASE
+                && rental.DaysRented > 1)
+            {
+                frequentRenterPoints++;
+            }
+                
+            return frequentRenterPoints;
+        }
+
+        private double AmountFor(Rental rental)
+        {
+            double thisAmount = 0;
+            switch (rental.Movie.PriceCode)
+            {
+                case Movie.REGULAR:
+                    thisAmount += 2;
+                    if (rental.DaysRented > 2)
+                        thisAmount += (rental.DaysRented - 2) * 1.5;
+                    break;
+                case Movie.NEW_RELEASE:
+                    thisAmount += rental.DaysRented * 3;
+                    break;
+                case Movie.CHILDREN:
+                    thisAmount += 1.5;
+                    if (rental.DaysRented > 3)
+                        thisAmount += (rental.DaysRented - 3) * 1.5;
+                    break;
+            }
+
+            return thisAmount;
         }
     }
 }
