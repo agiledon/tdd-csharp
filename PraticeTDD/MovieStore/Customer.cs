@@ -27,14 +27,9 @@ namespace Zhangyi.PracticeTDD.MovieStore
             int frequentRenterPoints = 0;
             string result = "Rental Record for " + name + "\n";
 
-            foreach (var rental in rentals)
-            {
-                totalAmount += rental.AmountFor();
-            }
-            foreach (var rental in rentals)
-            {
-                frequentRenterPoints += rental.PointsFor();
-            }
+            totalAmount = TotalAmount(totalAmount);
+            frequentRenterPoints = FrequentRenterPoints(frequentRenterPoints);
+
             foreach (var rental in rentals)
             {
                 //show figures
@@ -46,6 +41,26 @@ namespace Zhangyi.PracticeTDD.MovieStore
             result += "You earned " + frequentRenterPoints +
                     " frequent renter points";
             return result;
+        }
+
+        private int FrequentRenterPoints(int frequentRenterPoints)
+        {
+            foreach (var rental in rentals)
+            {
+                frequentRenterPoints += rental.PointsFor();
+            }
+
+            return frequentRenterPoints;
+        }
+
+        private double TotalAmount(double totalAmount)
+        {
+            foreach (var rental in rentals)
+            {
+                totalAmount += rental.AmountFor();
+            }
+
+            return totalAmount;
         }
     }
 }
