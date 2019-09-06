@@ -15,9 +15,9 @@
 
         public Movie Movie => this.movie;
 
-        public int PointsFor(int frequentRenterPoints)
+        public int PointsFor()
         {
-            frequentRenterPoints++;
+            var frequentRenterPoints = 1;
 
             if (Movie.PriceCode == Movie.NEW_RELEASE
                 && DaysRented > 1)

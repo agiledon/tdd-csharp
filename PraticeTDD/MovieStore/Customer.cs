@@ -33,7 +33,7 @@ namespace Zhangyi.PracticeTDD.MovieStore
             }
             foreach (var rental in rentals)
             {
-                frequentRenterPoints = rental.PointsFor(frequentRenterPoints);
+                frequentRenterPoints += rental.PointsFor();
             }
             foreach (var rental in rentals)
             {
