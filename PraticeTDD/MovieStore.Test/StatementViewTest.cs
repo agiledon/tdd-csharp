@@ -5,21 +5,24 @@ using Zhangyi.PracticeTDD.MovieStore;
 
 namespace MovieStore.Test
 {
-    public class CustomerTest
+    public class StatementViewTest
     {
+        private StatementView statementView;
         private const string NAME = "zhangyi";
 
         [Theory]
         [MemberData(nameof(CustomerFixture))]
         public void Should_statement(Customer customer, string expectedStatement)
         {
-            Assert.Equal(expectedStatement, customer.StatementView.Statement());
+            statementView = new StatementView(customer);
+            Assert.Equal(expectedStatement, statementView.Statement());
         }
 
         [Fact]
         public void Should_statement_for_many_rentals()
         {
             var customer = CreateCustomerWithTwoRentals();
+            statementView = new StatementView(customer);
 
             var expectedStatement = "Rental Record for zhangyi\n\t" +
                                     "Brave Heart\t2\n\t" +
@@ -27,7 +30,7 @@ namespace MovieStore.Test
                                     "Amount owed is 14\n" +
                                     "You earned 3 frequent renter points";
 
-            Assert.Equal(expectedStatement, customer.StatementView.Statement());
+            Assert.Equal(expectedStatement, statementView.Statement());
         }
 
         public static IEnumerable<object[]> CustomerFixture()
