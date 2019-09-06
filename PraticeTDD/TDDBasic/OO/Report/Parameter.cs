@@ -7,6 +7,7 @@ namespace Zhangyi.PraticeTDD.TDDBasic.OO.Report
     interface IParameter
     {
         string Name { get; }
+        void Fill(IHttpRequest request);
     }
 
     class SimpleParameter : IParameter
@@ -26,8 +27,8 @@ namespace Zhangyi.PraticeTDD.TDDBasic.OO.Report
 
         public void Fill(IHttpRequest request)
         {
-            string[] values = request.ParameterValues(this.Name);
-            this.Values = values;
+            var values = request.ParameterValues(Name);
+            Values = values;
         }
     }
 
@@ -55,9 +56,9 @@ namespace Zhangyi.PraticeTDD.TDDBasic.OO.Report
 
         public void Fill(IHttpRequest request)
         {
-            foreach (Item item in this.Items)
+            foreach (var item in this.Items)
             {
-                string[] values = request.ParameterValues(item.Name);
+                var values = request.ParameterValues(item.Name);
                 item.Values = values;
             }
         }
@@ -100,27 +101,27 @@ namespace Zhangyi.PraticeTDD.TDDBasic.OO.Report
         {
             if (element != null)
             {
-                this.elements.Add(element);
+                elements.Add(element);
             }
         }
 
         public void Fill(IHttpRequest request)
         {
-            string[] rows =
+            var rows =
                 request.ParameterValues(this.RowName);
-            string[] columns =
+            var columns =
                 request.ParameterValues(this.ColumnName);
-            string[] dataCells =
+            var dataCells =
                 request.ParameterValues(this.DataCellName);
 
-            int columnSize = columns.Length;
-            for (int i = 0; i < rows.Length; i++)
+            var columnSize = columns.Length;
+            for (var i = 0; i < rows.Length; i++)
             {
                 for (int j = 0; j < columns.Length; j++)
                 {
-                    TableParameterElement element = new TableParameterElement(rows[i], columns[j],
+                    var element = new TableParameterElement(rows[i], columns[j],
                         dataCells[columnSize * i + j]);
-                    this.AddElement(element);
+                    AddElement(element);
                 }
             }
         }
