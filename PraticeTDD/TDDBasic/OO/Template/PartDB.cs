@@ -5,45 +5,16 @@ using System.Data.SqlClient;
 
 namespace Zhangyi.PracticeTDD.TDDBasic.OO.Template
 {
-    public class PartDb
+    public class PartDb : DatabaseTemplate
     {
         private IList<Part> parts = new List<Part>();
 
-        public void Populate()
-        {
-            const string connString = "Data Source=(local);Initial Catalog=Northwind;"
-                                      + "Integrated Security=true";
-            string queryString = BuildSQL();
-
-
-            using (var connection = new SqlConnection(connString))
-            {
-                var command = new SqlCommand(queryString, connection);
-
-                try
-                {
-                    connection.Open();
-                    var reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        PopulateEntity(reader);
-                    }
-
-                    reader.Close();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-        }
-
-        private string BuildSQL()
+        protected override string BuildSQL()
         {
             return "select * from part";
         }
 
-        private void PopulateEntity(SqlDataReader reader)
+        protected override void PopulateEntity(SqlDataReader reader)
         {
             var name = reader[0].ToString();
             var brand = reader[1].ToString();
