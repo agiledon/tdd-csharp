@@ -6,8 +6,8 @@ namespace Zhangyi.PracticeTDD.TDDBasic.OO.Demeter
 {
     public class Customer
     {
-        private string firstName;
-        private string lastName;
+        private readonly string firstName;
+        private readonly string lastName;
         private readonly Wallet myWallet;
 
         public Customer(string firstName, string lastName, Wallet myWallet)
@@ -19,18 +19,16 @@ namespace Zhangyi.PracticeTDD.TDDBasic.OO.Demeter
 
         public string Name => $"{firstName} {lastName}";
 
-        public Wallet Wallet => this.myWallet;
-
         public double TotalMoney()
         {
-            return Wallet.TotalMoney;
+            return myWallet.TotalMoney;
         }
 
         public void Pay(double payment)
         {
-            if (Wallet.TotalMoney > payment)
+            if (myWallet.IsEnough(payment))
             {
-                Wallet.SubtractMoney(payment);
+                myWallet.SubtractMoney(payment);
             }
             else
             {

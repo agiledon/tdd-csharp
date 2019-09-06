@@ -2,23 +2,26 @@
 {
     public class Wallet
     {
-        private double totalMoney;
-
         public Wallet(double totalMoney)
         {
-            this.totalMoney = totalMoney;
+            TotalMoney = totalMoney;
         }
 
-        public double TotalMoney => this.totalMoney;
+        public double TotalMoney { get; private set; }
 
         public void AddMoney(double deposit)
         {
-            totalMoney += deposit;
+            TotalMoney += deposit;
         }
 
         public void SubtractMoney(double debit)
         {
-            totalMoney -= debit;
+            TotalMoney -= debit;
+        }
+
+        public bool IsEnough(double payment)
+        {
+            return TotalMoney > payment;
         }
     }
 }
