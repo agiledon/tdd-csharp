@@ -21,12 +21,16 @@ namespace Zhangyi.PracticeTDD.TDDBasic.OO.Demeter
 
         public Wallet Wallet => this.myWallet;
 
+        public double TotalMoney()
+        {
+            return Wallet.TotalMoney;
+        }
+
         public void Pay(double payment)
         {
-            Wallet theWallet = this.Wallet;
-            if (theWallet.TotalMoney > payment)
+            if (Wallet.TotalMoney > payment)
             {
-                theWallet.SubtractMoney(payment);
+                Wallet.SubtractMoney(payment);
             }
             else
             {

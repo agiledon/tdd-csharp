@@ -17,8 +17,10 @@ namespace Zhangyi.PracticeTDD.TDDBasic.Test.OO.Demeter
             cashier.Charge(customer, 50.0);
 
             // then
-            Assert.Equal(50.0, customer.Wallet.TotalMoney);
+            Assert.Equal(50.0, customer.TotalMoney());
         }
+
+        
 
         [Fact]
         public void Should_throw_exception_if_money_is_not_enough()
