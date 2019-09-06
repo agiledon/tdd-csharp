@@ -13,7 +13,7 @@ namespace MovieStore.Test
         [MemberData(nameof(CustomerFixture))]
         public void Should_statement(Customer customer, string expectedStatement)
         {
-            Assert.Equal(expectedStatement, customer.Statement());
+            Assert.Equal(expectedStatement, customer.StatementView.Statement());
         }
 
         [Fact]
@@ -27,7 +27,7 @@ namespace MovieStore.Test
                                     "Amount owed is 14\n" +
                                     "You earned 3 frequent renter points";
 
-            Assert.Equal(expectedStatement, customer.Statement());
+            Assert.Equal(expectedStatement, customer.StatementView.Statement());
         }
 
         public static IEnumerable<object[]> CustomerFixture()

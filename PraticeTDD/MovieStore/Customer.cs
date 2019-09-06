@@ -8,44 +8,35 @@ namespace Zhangyi.PracticeTDD.MovieStore
     public class Customer
     {
         private string name;
-        private IList<Rental> rentals = new List<Rental>();
+        public IList<Rental> Rentals { get; } = new List<Rental>();
+        private readonly StatementView statementView;
 
         public Customer(string name)
         {
             this.name = name;
+            statementView = new StatementView(this);
         }
 
         public void AddRental(Rental arg)
         {
-            rentals.Add(arg);
+            Rentals.Add(arg);
         }
 
         public string Name { get => this.name; }
 
-        public string Statement()
+        public StatementView StatementView
         {
-            string result = "Rental Record for " + name + "\n";
-            foreach (var rental in rentals)
-            {
-                //show figures
-                result += "\t" + rental.Movie.Title + "\t" + rental.AmountFor() + "\n";
-            }
-
-            //add footer lines
-            result += "Amount owed is " + TotalAmount() + "\n";
-            result += "You earned " + FrequentRenterPoints() +
-                    " frequent renter points";
-            return result;
+            get { return statementView; }
         }
 
-        private int FrequentRenterPoints()
+        public int FrequentRenterPoints()
         {
-            return rentals.Sum(rental => rental.PointsFor());
+            return Rentals.Sum(rental => rental.PointsFor());
         }
 
-        private double TotalAmount()
+        public double TotalAmount()
         {
-            return rentals.Sum(rental => rental.AmountFor());
+            return Rentals.Sum(rental => rental.AmountFor());
         }
     }
 }
