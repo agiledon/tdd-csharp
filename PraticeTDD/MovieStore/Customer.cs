@@ -24,10 +24,6 @@ namespace Zhangyi.PracticeTDD.MovieStore
 
         public string Statement()
         {
-            var totalAmount = TotalAmount();
-
-            var frequentRenterPoints = FrequentRenterPoints();
-
             string result = "Rental Record for " + name + "\n";
             foreach (var rental in rentals)
             {
@@ -36,8 +32,8 @@ namespace Zhangyi.PracticeTDD.MovieStore
             }
 
             //add footer lines
-            result += "Amount owed is " + totalAmount + "\n";
-            result += "You earned " + frequentRenterPoints +
+            result += "Amount owed is " + TotalAmount() + "\n";
+            result += "You earned " + FrequentRenterPoints() +
                     " frequent renter points";
             return result;
         }
