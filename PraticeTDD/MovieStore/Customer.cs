@@ -27,10 +27,10 @@ namespace Zhangyi.PracticeTDD.MovieStore
             int frequentRenterPoints = 0;
             string result = "Rental Record for " + name + "\n";
 
-            foreach (Rental rental in rentals)
+            foreach (var rental in rentals)
             {
-                var thisAmount = AmountFor(rental);
-                frequentRenterPoints = PointsFor(frequentRenterPoints, rental);
+                var thisAmount = rental.AmountFor();
+                frequentRenterPoints = rental.PointsFor(frequentRenterPoints);
 
                 //show figures
                 result += "\t" + rental.Movie.Title + "\t" + thisAmount + "\n";
@@ -42,42 +42,6 @@ namespace Zhangyi.PracticeTDD.MovieStore
             result += "You earned " + frequentRenterPoints +
                     " frequent renter points";
             return result;
-        }
-
-        private static int PointsFor(int frequentRenterPoints, Rental rental)
-        {
-            frequentRenterPoints++;
-
-            if (rental.Movie.PriceCode == Movie.NEW_RELEASE
-                && rental.DaysRented > 1)
-            {
-                frequentRenterPoints++;
-            }
-                
-            return frequentRenterPoints;
-        }
-
-        private double AmountFor(Rental rental)
-        {
-            double thisAmount = 0;
-            switch (rental.Movie.PriceCode)
-            {
-                case Movie.REGULAR:
-                    thisAmount += 2;
-                    if (rental.DaysRented > 2)
-                        thisAmount += (rental.DaysRented - 2) * 1.5;
-                    break;
-                case Movie.NEW_RELEASE:
-                    thisAmount += rental.DaysRented * 3;
-                    break;
-                case Movie.CHILDREN:
-                    thisAmount += 1.5;
-                    if (rental.DaysRented > 3)
-                        thisAmount += (rental.DaysRented - 3) * 1.5;
-                    break;
-            }
-
-            return thisAmount;
         }
     }
 }
