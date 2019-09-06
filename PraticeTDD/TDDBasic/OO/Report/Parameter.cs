@@ -23,6 +23,12 @@ namespace Zhangyi.PraticeTDD.TDDBasic.OO.Report
         public string[] Values {
             get; set;
         }
+
+        public void Fill(IHttpRequest request)
+        {
+            string[] values = request.ParameterValues(this.Name);
+            this.Values = values;
+        }
     }
 
     class ItemParameter : IParameter
@@ -47,6 +53,14 @@ namespace Zhangyi.PraticeTDD.TDDBasic.OO.Report
             }            
         }
 
+        public void Fill(IHttpRequest request)
+        {
+            foreach (Item item in this.Items)
+            {
+                string[] values = request.ParameterValues(item.Name);
+                item.Values = values;
+            }
+        }
     }
 
     class Item
@@ -87,6 +101,27 @@ namespace Zhangyi.PraticeTDD.TDDBasic.OO.Report
             if (element != null)
             {
                 this.elements.Add(element);
+            }
+        }
+
+        public void Fill(IHttpRequest request)
+        {
+            string[] rows =
+                request.ParameterValues(this.RowName);
+            string[] columns =
+                request.ParameterValues(this.ColumnName);
+            string[] dataCells =
+                request.ParameterValues(this.DataCellName);
+
+            int columnSize = columns.Length;
+            for (int i = 0; i < rows.Length; i++)
+            {
+                for (int j = 0; j < columns.Length; j++)
+                {
+                    TableParameterElement element = new TableParameterElement(rows[i], columns[j],
+                        dataCells[columnSize * i + j]);
+                    this.AddElement(element);
+                }
             }
         }
     }
