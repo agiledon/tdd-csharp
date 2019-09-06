@@ -13,7 +13,7 @@ namespace Zhangyi.PracticeTDD.TDDBasic.OO.Template
         {
             const string connString = "Data Source=(local);Initial Catalog=Northwind;"
                                       + "Integrated Security=true";
-            const string queryString = "select * from part";
+            string queryString = BuildSQL();
 
 
             using (var connection = new SqlConnection(connString))
@@ -26,11 +26,7 @@ namespace Zhangyi.PracticeTDD.TDDBasic.OO.Template
                     var reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        string name = reader[0].ToString();
-                        string brand = reader[1].ToString();
-                        double retailPrice = double.Parse(reader[2].ToString());
-
-                        parts.Add(new Part(name, brand, retailPrice));
+                        PopulateEntity(reader);
                     }
 
                     reader.Close();
@@ -40,6 +36,20 @@ namespace Zhangyi.PracticeTDD.TDDBasic.OO.Template
                     Console.WriteLine(ex.Message);
                 }
             }
+        }
+
+        private string BuildSQL()
+        {
+            return "select * from part";
+        }
+
+        private void PopulateEntity(SqlDataReader reader)
+        {
+            var name = reader[0].ToString();
+            var brand = reader[1].ToString();
+            var retailPrice = double.Parse(reader[2].ToString());
+
+            parts.Add(new Part(name, brand, retailPrice));
         }
     }
 
