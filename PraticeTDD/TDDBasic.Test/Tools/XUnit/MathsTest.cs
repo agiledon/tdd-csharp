@@ -8,7 +8,7 @@ namespace Zhangyi.PracticeTDD.TDDBasic.Test.Tools.XUnit
         [Theory]
         [InlineData(3)]
         [InlineData(5)]
-        [InlineData(6)]
+        [InlineData(7)]
         public void Should_be_odd_numbers(int number)
         {
             Assert.True(Maths.IsOdd(number));
